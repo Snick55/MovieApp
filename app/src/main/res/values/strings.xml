@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MovieApp</string>
+    <string name="nnn">Новинки</string>
+    <string name="no_internet_connection">Проверьте подключение к интернету</string>
+    <string name="service_unavailable_exception">Сервер недоступен</string>
+    <string name="generic_exception">Что то пошло не так</string>
+</resources>
