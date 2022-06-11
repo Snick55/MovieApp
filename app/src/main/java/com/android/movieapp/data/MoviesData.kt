@@ -19,7 +19,7 @@ interface MoviesData {
 
         fun map(list: List<Film>): T
 
-        class Base() : Mapper<MoviesDomain> {
+        class Base : Mapper<MoviesDomain> {
             override fun map(list: List<Film>): MoviesDomain {
                 return MoviesDomain.Base(list)
             }

@@ -33,7 +33,6 @@ class MoviesFragment : Fragment(){
         binding.moviesRV.layoutManager = GridLayoutManager(requireActivity(),3)
 
         viewModel.observeMovie(viewLifecycleOwner){
-            Log.d("TAG","VALUE IS :::::${it.size}")
             adapter.setList(it)
         }
 
