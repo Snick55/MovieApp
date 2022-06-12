@@ -18,7 +18,7 @@ interface Repository {
         ) : Repository {
         override suspend fun getMovies(): MoviesDomain {
             val moviesData = cloudDataSource.getMovies().map(mapperData)
-            Log.d("TAG","MOVIESDATA:::::::::::::: ${moviesData}")
+            Log.d("TAG","MOVIESDATA:::::::::::::: ${moviesData.test()}")
             return moviesData.map(mapper)
         }
     }

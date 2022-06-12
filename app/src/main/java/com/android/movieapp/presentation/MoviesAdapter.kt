@@ -37,5 +37,9 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MyViewHolder>() {
     override fun getItemCount(): Int = films.size
 
     class MyViewHolder(val binding: MovieItemBinding) : RecyclerView.ViewHolder(binding.root)
+    companion object {
+        private const val HOLDER_URL =
+            "https://static.tildacdn.com/tild6333-6666-4435-a132-306132353439/no_foto.png"
+    }
 
 }

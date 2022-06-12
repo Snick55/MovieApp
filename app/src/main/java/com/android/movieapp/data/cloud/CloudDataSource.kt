@@ -13,6 +13,7 @@ interface CloudDataSource {
     ) : CloudDataSource {
         override suspend fun getMovies(): MoviesCloud =
             try {
+                Log.d("TAG", "TEST::: ${service.getMovies().test()}")
                 service.getMovies()
             } catch (e: Exception) {
                 throw handleError.handle(e)

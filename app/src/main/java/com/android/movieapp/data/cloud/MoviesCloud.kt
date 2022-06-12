@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName
 
 interface MoviesCloud {
 
+    fun test(): String
     fun <T> map(mapper: Mapper<T>): T
 
     data class Base(
@@ -14,6 +15,7 @@ interface MoviesCloud {
         private val films: ArrayList<Film>
     ):MoviesCloud{
         override fun <T> map(mapper: Mapper<T>): T = mapper.map(films)
+       override fun test() = films[0].imageUrl
 
     }
 
@@ -32,10 +34,12 @@ interface MoviesCloud {
 }
 data class Film(
      val id: Int,
+     @SerializedName("localized_name")
      val localizedName: String,
      val name: String,
      val year: Int,
      val rating: Double,
+     @SerializedName("image_url")
      val imageUrl: String,
      val description: String,
      val genres: ArrayList<String> = arrayListOf()

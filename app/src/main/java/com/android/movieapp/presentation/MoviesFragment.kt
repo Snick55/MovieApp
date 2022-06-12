@@ -21,6 +21,7 @@ class MoviesFragment : Fragment(){
     ): View {
         binding = MoviesFragmentBinding.inflate(inflater,container,false)
 
+
         return binding.root
     }
 
@@ -28,12 +29,17 @@ class MoviesFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val viewModel = (requireActivity().applicationContext as App).moviesViewModel
-        val adapter = MoviesAdapter()
+
+       val adapter = MoviesAdapter()
         binding.moviesRV.adapter = adapter
         binding.moviesRV.layoutManager = GridLayoutManager(requireActivity(),3)
 
+
         viewModel.observeMovie(viewLifecycleOwner){
             adapter.setList(it)
+        }
+        viewModel.observeProgress(viewLifecycleOwner){
+            it.apply (binding.progressLayout)
         }
 
     }

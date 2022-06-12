@@ -30,6 +30,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textColor="@color/white"
-        tools:text="Name" />
+        tools:text="Name"
+        android:maxLines="2"
+        android:ellipsize="end"
+        />
 
 </LinearLayout>

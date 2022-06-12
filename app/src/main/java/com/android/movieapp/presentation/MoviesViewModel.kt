@@ -1,5 +1,6 @@
 package com.android.movieapp.presentation
 
+import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -24,6 +25,7 @@ class MoviesViewModel(
         progressCommunication.show(Visibility.Visible())
         dispatcher.launchBackground(viewModelScope){
             interactor.movies(atFinish){
+                Log.d("TAG","VIEWMODEL:::::${it.films()}")
                 communication.show(it)
             }
         }
