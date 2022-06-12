@@ -41,6 +41,10 @@ class MoviesFragment : Fragment(){
         viewModel.observeProgress(viewLifecycleOwner){
             it.apply (binding.progressLayout)
         }
+        viewModel.observeError(viewLifecycleOwner){
+            binding.errorContainer.visibility = View.VISIBLE
+            binding.errorMessage.text = it
+        }
 
     }
 }

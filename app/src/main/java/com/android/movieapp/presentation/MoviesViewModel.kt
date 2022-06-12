@@ -12,6 +12,7 @@ class MoviesViewModel(
     private val interactor: MoviesInteractor,
     private val progressCommunication: ProgressCommunication,
     private val communication: Communication,
+    private val errorCommunication: ErrorCommunication,
     dispatcher: com.android.movieapp.core.Dispatchers
 ): ViewModel() {
 
@@ -25,7 +26,6 @@ class MoviesViewModel(
         progressCommunication.show(Visibility.Visible())
         dispatcher.launchBackground(viewModelScope){
             interactor.movies(atFinish){
-                Log.d("TAG","VIEWMODEL:::::${it.films()}")
                 communication.show(it)
             }
         }
@@ -39,5 +39,8 @@ class MoviesViewModel(
         progressCommunication.observe(lifecycleOwner, observer)
     }
 
+    fun observeError(lifecycleOwner: LifecycleOwner,observer: Observer<String>){
+        errorCommunication.observe(lifecycleOwner, observer)
+    }
 
 }

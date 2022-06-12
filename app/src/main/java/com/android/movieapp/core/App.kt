@@ -9,10 +9,7 @@ import com.android.movieapp.data.cloud.MoviesCloud
 import com.android.movieapp.domain.HandleDomainError
 import com.android.movieapp.domain.MoviesDomain
 import com.android.movieapp.domain.MoviesInteractor
-import com.android.movieapp.presentation.Communication
-import com.android.movieapp.presentation.HandleUiError
-import com.android.movieapp.presentation.MoviesViewModel
-import com.android.movieapp.presentation.ProgressCommunication
+import com.android.movieapp.presentation.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -47,14 +44,15 @@ class App : Application() {
         val moviesDomainMapper = MoviesDomain.Mapper.Base()
         val dispatchers = Dispatchers.Base()
         val resourceManager = ResourceManager.Base(this)
-        val handleUiError = HandleUiError(resourceManager)
+        val errorCommunication = ErrorCommunication.Base()
+        val handleUiError = HandleUiError(resourceManager,errorCommunication)
 
         val interactor = MoviesInteractor.Base(moviesDomainMapper,repository,dispatchers,handleUiError)
 
         val progressCommunication = ProgressCommunication.Base()
         val communication = Communication.Base()
 
-        moviesViewModel = MoviesViewModel(interactor,progressCommunication,communication,dispatchers)
+        moviesViewModel = MoviesViewModel(interactor,progressCommunication,communication,errorCommunication,dispatchers)
     }
 
 

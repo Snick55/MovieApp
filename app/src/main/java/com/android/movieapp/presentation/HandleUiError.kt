@@ -7,16 +7,17 @@ import com.android.movieapp.domain.NoInternetConnectionException
 import com.android.movieapp.domain.ServiceUnavailableException
 
 class HandleUiError(
-    resourceManager: ResourceManager
+  private val resourceManager: ResourceManager,
+   private val communication: ErrorCommunication
 ): HandleError {
 
     override fun handle(error: Exception): Exception {
      val errorMessage =  when(error){
-          is  NoInternetConnectionException -> R.string.no_internet_connection
-         is ServiceUnavailableException -> R.string.service_unavailable_exception
-         else -> R.string.generic_exception
-         //todo
+          is  NoInternetConnectionException ->resourceManager.getMessage(R.string.no_internet_connection)
+         is ServiceUnavailableException -> resourceManager.getMessage(R.string.service_unavailable_exception)
+         else -> resourceManager.getMessage(R.string.generic_exception)
         }
+        communication.show(errorMessage)
         return error
     }
 }
