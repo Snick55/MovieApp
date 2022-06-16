@@ -28,11 +28,13 @@ class App : Application() {
         val client = OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .build()
+
         val retrofit = Retrofit.Builder()
             .baseUrl("https://s3-eu-west-1.amazonaws.com/")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
         val service = retrofit.create(ApiService::class.java)
 
         val cloudDataSource = CloudDataSource.Base(service,HandleDomainError())
@@ -41,18 +43,18 @@ class App : Application() {
 
         val repository = Repository.Base(cloudDataSource,moviesDataMapper,moviesCloudMapper)
 
-        val moviesDomainMapper = MoviesDomain.Mapper.Base()
+        val moviesDomainMapper = MoviesDomain.Mapper.Base(MovieMapper.FilmToUiMovieMapper())
         val dispatchers = Dispatchers.Base()
         val resourceManager = ResourceManager.Base(this)
         val errorCommunication = ErrorCommunication.Base()
         val handleUiError = HandleUiError(resourceManager,errorCommunication)
 
-        val interactor = MoviesInteractor.Base(moviesDomainMapper,repository,dispatchers,handleUiError)
+        val interactor = MoviesInteractor.Base(repository,dispatchers,handleUiError)
 
         val progressCommunication = ProgressCommunication.Base()
         val communication = Communication.Base()
 
-        moviesViewModel = MoviesViewModel(interactor,progressCommunication,communication,errorCommunication,dispatchers)
+        moviesViewModel = MoviesViewModel(interactor,progressCommunication,communication,errorCommunication,dispatchers,moviesDomainMapper)
     }
 
 

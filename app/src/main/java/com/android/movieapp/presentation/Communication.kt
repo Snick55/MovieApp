@@ -1,28 +1,26 @@
 package com.android.movieapp.presentation
 
-import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.android.movieapp.data.cloud.Film
 
 interface Communication {
 
-    fun show(moviesUi: MoviesUi)
+    fun show(moviesUi: List<UiMovie>)
 
-    fun observe(lifecycleOwner: LifecycleOwner,observer: Observer<List<Film>>)
+    fun observe(lifecycleOwner: LifecycleOwner,observer: Observer<List<UiMovie>>)
 
 
 
     class  Base: Communication{
 
-        private val liveData = MutableLiveData<List<Film>>()
+        private val liveData = MutableLiveData<List<UiMovie>>()
 
-        override fun show(moviesUi: MoviesUi) {
-            liveData.value = moviesUi.films()
+        override fun show(moviesUi: List<UiMovie>) {
+            liveData.value = moviesUi
         }
 
-        override fun observe(lifecycleOwner: LifecycleOwner, observer: Observer<List<Film>>) {
+        override fun observe(lifecycleOwner: LifecycleOwner, observer: Observer<List<UiMovie>>) {
             liveData.observe(lifecycleOwner,observer)
         }
     }

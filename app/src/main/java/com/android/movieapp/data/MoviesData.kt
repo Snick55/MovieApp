@@ -7,11 +7,11 @@ interface MoviesData {
     fun test(): String
     fun <T> map(mapper: Mapper<T>): T
 
-    class Base(
+    data class Base(
         private val films: List<Film>
     ) : MoviesData {
         override fun <T> map(mapper: Mapper<T>): T = mapper.map(films)
-        override fun test() = films[0].imageUrl
+        override fun test() = films[0].imageUrl!!
 
     }
 
