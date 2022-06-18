@@ -1,12 +1,38 @@
 package com.android.movieapp.presentation
 
+import android.widget.ImageView
+import android.widget.TextView
 import com.android.movieapp.data.cloud.Film
+import com.bumptech.glide.Glide
 
 interface MoviesUi {
 
-    fun films():List<Film>
+    fun show(textView: TextView) = Unit
 
-    class Base(private val films: List<Film>):MoviesUi{
-       override fun films() = films
+    fun showImage(imageView: ImageView) = Unit
+
+
+    data class Base(
+        private val title: String,
+        private val description: String,
+        private val imageUrl: String
+    ) : MoviesUi {
+        override fun show(textView: TextView) {
+            textView.text = title
+        }
+
+        override fun showImage(imageView: ImageView) {
+            Glide.with(imageView.context).load(imageUrl).into(imageView)
+        }
     }
+
+    data class Category(
+        private val category: String
+    ): MoviesUi{
+        override fun show(textView: TextView) {
+            textView.text = category
+        }
+    }
+
+
 }

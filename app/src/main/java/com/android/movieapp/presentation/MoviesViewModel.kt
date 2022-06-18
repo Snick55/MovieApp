@@ -1,20 +1,18 @@
 package com.android.movieapp.presentation
 
-import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.movieapp.domain.MoviesDomain
 import com.android.movieapp.domain.MoviesInteractor
+import java.util.ArrayList
 
 class MoviesViewModel(
     private val interactor: MoviesInteractor,
     private val progressCommunication: ProgressCommunication,
     private val communication: Communication,
     private val errorCommunication: ErrorCommunication,
-    dispatcher: com.android.movieapp.core.Dispatchers,
-    private val mapper: MoviesDomain.Mapper<List<UiMovie>>
+    dispatcher: com.android.movieapp.core.Dispatchers
 ) : ViewModel() {
 
 
@@ -26,26 +24,25 @@ class MoviesViewModel(
     init {
         progressCommunication.show(Visibility.Visible())
         dispatcher.launchBackground(viewModelScope) {
-            interactor.movies(atFinish) { moviesDomain ->
-                val moviesUi = moviesDomain.map(mapper)
+            interactor.movies(atFinish) {
 
-                val moviesUiWithCategory = ArrayList<UiMovie>()
+                val moviesUiWithCategory = ArrayList<MoviesUi>()
 
                 moviesUiWithCategory.addAll(
                     listOf(
-                        UiMovie.Category("Новинки"),
-                        UiMovie.Category(""),
-                        UiMovie.Category("")
+                        MoviesUi.Category("Новинки"),
+                        MoviesUi.Category(""),
+                        MoviesUi.Category("")
                     )
                 )
-                moviesUiWithCategory.addAll(moviesUi)
+                moviesUiWithCategory.addAll(it)
 
                 communication.show(moviesUiWithCategory)
             }
         }
     }
 
-    fun observeMovie(lifecycleOwner: LifecycleOwner, observer: Observer<List<UiMovie>>) {
+    fun observeMovie(lifecycleOwner: LifecycleOwner, observer: Observer<List<MoviesUi>>) {
         communication.observe(lifecycleOwner, observer)
     }
 

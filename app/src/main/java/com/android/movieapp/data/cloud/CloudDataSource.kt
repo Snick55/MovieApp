@@ -13,10 +13,9 @@ interface CloudDataSource {
     ) : CloudDataSource {
         override suspend fun getMovies(): MoviesCloud =
             try {
-                val movies = service.getMovies()
-                movies
+                service.getMovies()
             } catch (e: Exception) {
-                Log.d("zinoviewk","exc $e")
+                Log.d("TAG","ERROR${e}")
                 throw handleError.handle(e)
             }
     }

@@ -1,5 +1,6 @@
 package com.android.movieapp.presentation
 
+import android.util.Log
 import com.android.movieapp.R
 import com.android.movieapp.core.ResourceManager
 import com.android.movieapp.data.HandleError
@@ -12,7 +13,10 @@ class HandleUiError(
 ): HandleError {
 
     override fun handle(error: Exception): Exception {
-     val errorMessage =  when(error){
+        Log.e("ERROR","ERROR is $error")
+
+
+        val errorMessage =  when(error){
           is  NoInternetConnectionException ->resourceManager.getMessage(R.string.no_internet_connection)
          is ServiceUnavailableException -> resourceManager.getMessage(R.string.service_unavailable_exception)
          else -> resourceManager.getMessage(R.string.generic_exception)

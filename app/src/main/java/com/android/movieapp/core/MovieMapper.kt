@@ -1,19 +1,17 @@
 package com.android.movieapp.core
 
-import android.util.Log
-import com.android.movieapp.presentation.UiMovie
+import com.android.movieapp.presentation.MoviesUi
 
 interface MovieMapper<T> {
 
-    fun map(title: String,description: String,imageUrl: String) : T
+    fun map(title: String,description: String,imageUrl: String):T
 
-    class FilmToUiMovieMapper : MovieMapper<UiMovie> {
+    class FilmToMoviesUiMapper:MovieMapper<MoviesUi>{
 
-        override fun map(title: String, description: String, imageUrl: String): UiMovie
-        {
-            val movie = UiMovie.Base(title, description, imageUrl)
-//            Log.d("zinoviewk","map movie $movie")
-            return movie
+        override fun map(title: String, description: String, imageUrl: String): MoviesUi {
+            return MoviesUi.Base(title, description, imageUrl)
         }
     }
+
+
 }

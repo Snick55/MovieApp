@@ -4,83 +4,65 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 import com.android.movieapp.databinding.CategoryItemBinding
 import com.android.movieapp.databinding.MovieItemBinding
-import com.bumptech.glide.Glide
-import java.lang.IllegalStateException
 
-class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
+class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MyViewHolder>() {
 
-    private val uiMovies: MutableList<UiMovie> = ArrayList<UiMovie>()
+    private var films: List<MoviesUi> = emptyList()
 
-    fun setList(movies: List<UiMovie>) {
-        this.uiMovies.clear()
-        this.uiMovies.addAll(movies)
-        // todo use diff util callback
+
+    fun setList(movies: List<MoviesUi>) {
+        films = movies
         notifyDataSetChanged()
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        return when (viewType) {
+            0 -> {
+                    val inflater = LayoutInflater.from(parent.context)
+                    val binding = MovieItemBinding.inflate(inflater, parent, false)
+                    MyViewHolder.Movie(binding)
+                }
+                1 -> {
+                    val inflater = LayoutInflater.from(parent.context)
+                    val binding = CategoryItemBinding.inflate(inflater, parent, false)
+                  MyViewHolder.Category(binding)
+            }
+            else -> throw IllegalStateException("Unprocessed viewType $viewType")
 
-    override fun getItemViewType(position: Int): Int {
-        val currentUiMovie = uiMovies[position]
-        return when(currentUiMovie) {
-            is UiMovie.Base -> 1
-            is UiMovie.Category -> 2
-            else -> throw IllegalStateException("Unprocessed movie $currentUiMovie")
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-       return when(viewType) {
-            1 -> {
-                // todo move the shared code for Do not repeat yourself (DRY)
-                val inflater = LayoutInflater.from(parent.context)
-                val binding = MovieItemBinding.inflate(inflater, parent, false)
-                ViewHolder.Movie(binding)
-            }
-            2 -> {
-                val inflater = LayoutInflater.from(parent.context)
-                val binding = CategoryItemBinding.inflate(inflater, parent, false)
-                ViewHolder.Category(binding)
-            }
-           else -> throw IllegalStateException("Unprocessed viewType $viewType")
+        override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+           holder.bind(films[position])
+        }
 
-       }
-    }
+        override fun getItemCount(): Int = films.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val movie = uiMovies[position]
-        holder.bind(movie)
-    }
+        override fun getItemViewType(position: Int): Int {
+            return if (films[position] is MoviesUi.Category) 1
+            else 0
+        }
 
-    override fun getItemCount(): Int = uiMovies.size
+        abstract class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    abstract class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        open fun bind(uiMovie: UiMovie) = Unit
+            open fun bind(ui: MoviesUi) = Unit
 
-        class Movie(
-            private val binding: MovieItemBinding
-        ) : ViewHolder(binding.root) {
-            override fun bind(uiMovie: UiMovie) {
-                with(binding) {
-                    root.tag = uiMovie
-                    uiMovie.showTitle(nameItem)
-                    uiMovie.showImage(background)
+            class Movie(private val binding: MovieItemBinding) : MyViewHolder(binding.root) {
+                override fun bind(ui: MoviesUi) {
+                    with(binding) {
+                        root.tag = ui
+                        ui.show(nameItem)
+                        ui.showImage(background)
+                    }
                 }
             }
-        }
 
-        class Category(
-            private val binding: CategoryItemBinding
-        ) : ViewHolder(binding.root) {
-
-            override fun bind(uiMovie: UiMovie) {
-                with(binding) {
-                    root.tag = uiMovie
-                    uiMovie.showCategory(categoryTextView)
+            class Category(private val binding: CategoryItemBinding) : MyViewHolder(binding.root) {
+                override fun bind(ui: MoviesUi) {
+                    ui.show(binding.textView)
                 }
             }
         }
     }
-}

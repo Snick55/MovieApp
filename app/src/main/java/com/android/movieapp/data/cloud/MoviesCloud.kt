@@ -4,13 +4,11 @@ package com.android.movieapp.data.cloud
 import com.android.movieapp.core.Movie
 import com.android.movieapp.core.MovieMapper
 import com.android.movieapp.data.MoviesData
-import com.android.movieapp.presentation.UiMovie
 import com.google.gson.annotations.SerializedName
 
 
 interface MoviesCloud {
 
-    fun test(): String
     fun <T> map(mapper: Mapper<T>): T
 
     data class Base(
@@ -18,7 +16,6 @@ interface MoviesCloud {
         private val films: ArrayList<Film>
     ):MoviesCloud{
         override fun <T> map(mapper: Mapper<T>): T = mapper.map(films)
-       override fun test() = films[0].imageUrl!!
 
     }
 
@@ -43,13 +40,13 @@ data class Film(
      val year: Int,
      val rating: Double,
      @SerializedName("image_url")
-     val imageUrl: String? = "",
-     val description: String? = "",
+     val imageUrl: String?,
+     val description: String?,
      val genres: ArrayList<String> = arrayListOf()
-) : Movie {
-
-    override fun <T> map(mapper: MovieMapper<T>): T
-        = mapper.map(name,description ?: "",imageUrl ?: "")
+): Movie{
+    override fun <T> map(mapper: MovieMapper<T>): T {
+       return mapper.map(localizedName,description?: "",imageUrl?: "")
+    }
 }
 
 
