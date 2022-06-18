@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/recycler_view_space"/>
+        android:layout_marginTop="8dp"/>
 
     <LinearLayout
         android:id="@+id/progress_layout"

@@ -61,7 +61,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MyViewHolder>() {
 
             class Category(private val binding: CategoryItemBinding) : MyViewHolder(binding.root) {
                 override fun bind(ui: MoviesUi) {
-                    ui.show(binding.textView)
+                    ui.show(binding.categoryTextView)
                 }
             }
         }
