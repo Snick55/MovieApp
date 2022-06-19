@@ -10,6 +10,7 @@ import com.android.movieapp.domain.HandleDomainError
 import com.android.movieapp.domain.MoviesDomain
 import com.android.movieapp.domain.MoviesInteractor
 import com.android.movieapp.presentation.*
+import com.android.movieapp.presentation.Movies.MoviesViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -52,8 +53,8 @@ class App : Application() {
 
         val progressCommunication = ProgressCommunication.Base()
         val communication = Communication.Base()
-
-        moviesViewModel = MoviesViewModel(interactor,progressCommunication,communication,errorCommunication,dispatchers)
+        val currentMovieCommunication = CurrentMovieCommunication.Base()
+        moviesViewModel = MoviesViewModel(interactor,progressCommunication,communication,errorCommunication,currentMovieCommunication,dispatchers)
     }
 
 

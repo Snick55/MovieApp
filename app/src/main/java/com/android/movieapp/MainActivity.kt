@@ -2,9 +2,7 @@ package com.android.movieapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
-import com.android.movieapp.presentation.MoviesFragment
+import com.android.movieapp.presentation.Movies.MoviesFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +11,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null){
             supportFragmentManager.beginTransaction()
-                .add(android.R.id.content,  MoviesFragment()).commit()
+                .add(R.id.fragment_container,  MoviesFragment()).commit()
         }
     }
 }

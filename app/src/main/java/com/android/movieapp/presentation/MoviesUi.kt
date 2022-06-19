@@ -4,10 +4,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.android.movieapp.data.cloud.Film
 import com.bumptech.glide.Glide
+import java.io.Serializable
 
-interface MoviesUi {
+interface MoviesUi : Serializable {
 
     fun show(textView: TextView) = Unit
+
+    fun showDescription(textView: TextView) = Unit
 
     fun showImage(imageView: ImageView) = Unit
 
@@ -19,6 +22,10 @@ interface MoviesUi {
     ) : MoviesUi {
         override fun show(textView: TextView) {
             textView.text = title
+        }
+
+        override fun showDescription(textView: TextView) {
+            textView.text = description
         }
 
         override fun showImage(imageView: ImageView) {
