@@ -2,6 +2,7 @@ package com.android.movieapp.presentation
 
 import android.widget.ImageView
 import android.widget.TextView
+import com.android.movieapp.R
 import com.android.movieapp.data.cloud.Film
 import com.bumptech.glide.Glide
 import java.io.Serializable
@@ -29,7 +30,10 @@ interface MoviesUi : Serializable {
         }
 
         override fun showImage(imageView: ImageView) {
-            Glide.with(imageView.context).load(imageUrl).into(imageView)
+            Glide.with(imageView.context).load(imageUrl)
+                .placeholder(R.drawable.ic_placeholder)
+                .error(R.drawable.ic_placeholder)
+                .into(imageView)
         }
     }
 
