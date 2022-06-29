@@ -10,7 +10,7 @@ import com.android.movieapp.domain.HandleDomainError
 import com.android.movieapp.domain.MoviesDomain
 import com.android.movieapp.domain.MoviesInteractor
 import com.android.movieapp.presentation.*
-import com.android.movieapp.presentation.Movies.MoviesViewModel
+import com.android.movieapp.presentation.movies.MoviesViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -35,17 +35,17 @@ class App : Application() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val service = retrofit.create(ApiService::class.java)
-
+        val resourceManager = ResourceManager.Base(this)
         val cloudDataSource = CloudDataSource.Base(service,HandleDomainError())
         val moviesDataMapper = MoviesData.Mapper.Base()
         val moviesCloudMapper = MoviesCloud.Mapper.Base()
 
         val repository = Repository.Base(cloudDataSource,moviesDataMapper,moviesCloudMapper)
 
-        val movieMapper = MovieMapper.FilmToMoviesUiMapper()
+        val movieMapper = MovieMapper.FilmToMoviesUiMapper(resourceManager)
         val moviesDomainMapper = MoviesDomain.Mapper.Base(movieMapper)
         val dispatchers = Dispatchers.Base()
-        val resourceManager = ResourceManager.Base(this)
+
         val errorCommunication = ErrorCommunication.Base()
         val handleUiError = HandleUiError(resourceManager,errorCommunication)
 

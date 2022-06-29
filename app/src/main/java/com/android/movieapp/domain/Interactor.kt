@@ -1,6 +1,5 @@
 package com.android.movieapp.domain
 
-import android.util.Log
 import com.android.movieapp.core.Dispatchers
 import com.android.movieapp.data.HandleError
 

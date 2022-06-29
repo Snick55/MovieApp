@@ -1,31 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:background="@drawable/back"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    android:orientation="vertical">
 
-    <ImageView
 
-        android:id="@+id/imageView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-/>
-    <TextView
-        android:layout_marginTop="5dp"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="ekwncdkjnckjvnsdfkjvndfkjnvjkdfnvedv"/>
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="200dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:textSize="18sp"
+                android:id="@+id/date_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="50dp"
+                android:textColor="@color/white"
+                tools:text="Дата выхода:" />
+
+            <TextView
+                android:textSize="18sp"
+                android:id="@+id/ratting_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="50dp"
+                android:textColor="@color/white"
+                tools:text="Рейтинг:" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
     <TextView
-        android:textSize="16sp"
+        android:id="@+id/title_textview"
         android:textColor="@color/white"
-        android:id="@+id/description"
-        android:layout_marginTop="12dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="kjncdsfknvjdnvjsnvjfsnjfvdshbvdhjbvhjbsnjkdncscbdshjdbjfhvbfshjbvjhdfhjdhjvjdbjhvbdjhbvjhdfbvjhdbvhjd"/>
+        android:layout_marginTop="5dp"
+        tools:text="Name" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        tools:text="testtesttesttesttesttesttesttesttest" />
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.android.movieapp.presentation.Movies
+package com.android.movieapp.presentation.movies
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.android.movieapp.R
 import com.android.movieapp.core.App
 import com.android.movieapp.databinding.MoviesFragmentBinding
-import com.android.movieapp.presentation.Details.DetailsFragment
-import com.android.movieapp.presentation.MoviesUi
+import com.android.movieapp.presentation.details.DetailsFragment
 
 class MoviesFragment : Fragment(){
 

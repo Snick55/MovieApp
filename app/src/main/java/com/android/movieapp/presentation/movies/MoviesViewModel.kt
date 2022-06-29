@@ -1,6 +1,5 @@
-package com.android.movieapp.presentation.Movies
+package com.android.movieapp.presentation.movies
 
-import android.graphics.Movie
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel

@@ -45,7 +45,7 @@ data class Film(
      val genres: ArrayList<String> = arrayListOf()
 ): Movie{
     override fun <T> map(mapper: MovieMapper<T>): T {
-       return mapper.map(localizedName,description?: "",imageUrl?: "")
+        return mapper.map(localizedName,description?: "",imageUrl?: "",year,rating)
     }
 }
 
