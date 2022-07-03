@@ -5,6 +5,8 @@ import com.android.movieapp.core.Movie
 import com.android.movieapp.core.MovieMapper
 import com.android.movieapp.data.MoviesData
 import com.google.gson.annotations.SerializedName
+import javax.inject.Inject
+import javax.inject.Singleton
 
 
 interface MoviesCloud {
@@ -23,7 +25,8 @@ interface MoviesCloud {
 
         fun map(list: ArrayList<Film>):T
 
-        class Base:Mapper<MoviesData>{
+        @Singleton
+        class Base @Inject constructor():Mapper<MoviesData>{
             override fun map(list: ArrayList<Film>): MoviesData {
                 val result = list.toList()
                 return MoviesData.Base(result)

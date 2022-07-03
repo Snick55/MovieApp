@@ -4,6 +4,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import java.util.concurrent.atomic.AtomicBoolean
+import javax.inject.Inject
+import javax.inject.Singleton
 
 interface CurrentMovieCommunication {
 
@@ -11,7 +13,8 @@ interface CurrentMovieCommunication {
 
     fun observe(owner: LifecycleOwner,observer: Observer<Event<MoviesUi>>)
 
-    class Base: CurrentMovieCommunication{
+    @Singleton
+    class Base @Inject constructor() : CurrentMovieCommunication{
 
         private val liveData = MutableLiveData<Event<MoviesUi>>()
 

@@ -1,6 +1,8 @@
 package com.android.movieapp.core
 
 import kotlinx.coroutines.*
+import javax.inject.Inject
+import javax.inject.Singleton
 
 interface Dispatchers {
 
@@ -29,5 +31,6 @@ interface Dispatchers {
             withContext(ui, block)
     }
 
-    class Base : Abstract(kotlinx.coroutines.Dispatchers.Main, kotlinx.coroutines.Dispatchers.IO)
+    @Singleton
+    class Base @Inject constructor() : Abstract(kotlinx.coroutines.Dispatchers.Main, kotlinx.coroutines.Dispatchers.IO)
 }

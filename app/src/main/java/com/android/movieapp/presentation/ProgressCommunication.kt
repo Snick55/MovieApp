@@ -4,6 +4,8 @@ import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import javax.inject.Inject
+import javax.inject.Singleton
 
 interface ProgressCommunication {
 
@@ -12,7 +14,8 @@ interface ProgressCommunication {
     fun observe(lifecycleOwner: LifecycleOwner,observer: Observer<Visibility>)
 
 
-    class Base: ProgressCommunication{
+    @Singleton
+    class Base @Inject constructor() : ProgressCommunication{
 
         private val liveData = MutableLiveData<Visibility>()
 

@@ -3,6 +3,8 @@ package com.android.movieapp.presentation
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import javax.inject.Inject
+import javax.inject.Singleton
 
 interface ErrorCommunication {
 
@@ -10,7 +12,8 @@ interface ErrorCommunication {
 
     fun observe(lifecycleOwner: LifecycleOwner,observer: Observer<String>)
 
-    class Base: ErrorCommunication{
+    @Singleton
+    class Base @Inject constructor() : ErrorCommunication{
        private val liveData = MutableLiveData<String>()
 
         override fun show(errorMessage: String) {

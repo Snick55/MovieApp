@@ -4,12 +4,17 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.android.movieapp.domain.Interactor
 import com.android.movieapp.domain.MoviesInteractor
 import com.android.movieapp.presentation.*
 import com.android.movieapp.presentation.CurrentMovieCommunication.Event
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.ArrayList
+import javax.inject.Inject
 
-class MoviesViewModel(
+
+@HiltViewModel
+class MoviesViewModel @Inject constructor(
     private val interactor: MoviesInteractor,
     private val progressCommunication: ProgressCommunication,
     private val communication: Communication,

@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.movieapp.R
 import com.android.movieapp.core.App
 import com.android.movieapp.databinding.MoviesFragmentBinding
 import com.android.movieapp.presentation.details.DetailsFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MoviesFragment : Fragment(){
 
     private lateinit var binding: MoviesFragmentBinding
@@ -29,7 +33,7 @@ class MoviesFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewModel = (requireActivity().applicationContext as App).moviesViewModel
+        val viewModel by viewModels<MoviesViewModel>()
 
        val adapter = MoviesAdapter(viewModel)
         binding.moviesRV.adapter = adapter

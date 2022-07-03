@@ -8,8 +8,9 @@ import androidx.fragment.app.Fragment
 import com.android.movieapp.R
 import com.android.movieapp.databinding.FragmentDetailsBinding
 import com.android.movieapp.presentation.MoviesUi
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailsBinding

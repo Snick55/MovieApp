@@ -5,6 +5,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.android.movieapp.data.cloud.Film
+import javax.inject.Inject
+import javax.inject.Singleton
 
 interface Communication {
 
@@ -14,7 +16,8 @@ interface Communication {
 
 
 
-    class  Base: Communication{
+    @Singleton
+    class  Base @Inject constructor(): Communication{
 
         private val liveData = MutableLiveData<List<MoviesUi>>()
 

@@ -6,8 +6,11 @@ import com.android.movieapp.core.ResourceManager
 import com.android.movieapp.data.HandleError
 import com.android.movieapp.domain.NoInternetConnectionException
 import com.android.movieapp.domain.ServiceUnavailableException
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class HandleUiError(
+@Singleton
+class HandleUiError @Inject constructor(
   private val resourceManager: ResourceManager,
    private val communication: ErrorCommunication
 ): HandleError {
