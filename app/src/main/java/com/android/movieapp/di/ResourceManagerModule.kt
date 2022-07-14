@@ -1,5 +1,6 @@
 package com.android.movieapp.di
 
+import com.android.movieapp.MainActivity
 import com.android.movieapp.core.ResourceManager
 import dagger.Binds
 import dagger.Module
@@ -14,4 +15,6 @@ abstract class ResourceManagerModule {
     abstract fun bindResourceManager(
         resourceManager: ResourceManager.Base
     ):ResourceManager
+
+
 }

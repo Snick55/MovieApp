@@ -7,4 +7,6 @@
     <string name="load_message">Loading…</string>
     <string name="year_of_film">Дата выхода: %1$d</string>
     <string name="ratting_of_film">Рейтинг: %1$s</string>
+    <string name="movies_title">Movies</string>
+    <string name="details_fragment">Details</string>
 </resources>

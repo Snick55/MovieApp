@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.transition.TransitionInflater
+import com.android.movieapp.MainActivity
 import com.android.movieapp.R
 import com.android.movieapp.databinding.MoviesFragmentBinding
 import com.android.movieapp.presentation.details.DetailsFragment
@@ -22,6 +23,7 @@ class MoviesFragment : Fragment(){
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
         exitTransition = inflater.inflateTransition(R.transition.fade)
+
     }
 
     override fun onCreateView(
@@ -30,6 +32,7 @@ class MoviesFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View {
         binding = MoviesFragmentBinding.inflate(inflater,container,false)
+        (requireActivity() as MainActivity).changeTitle(getString(R.string.movies_title))
 
 
         return binding.root

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.transition.TransitionInflater
+import com.android.movieapp.MainActivity
 import com.android.movieapp.R
 import com.android.movieapp.databinding.FragmentDetailsBinding
 import com.android.movieapp.presentation.MoviesUi
@@ -20,6 +21,7 @@ class DetailsFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.slide_right)
+        (requireActivity() as MainActivity).changeTitle(getString(R.string.details_fragment))
     }
 
     override fun onCreateView(
