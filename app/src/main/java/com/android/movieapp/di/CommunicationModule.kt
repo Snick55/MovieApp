@@ -4,6 +4,8 @@ import com.android.movieapp.presentation.Communication
 import com.android.movieapp.presentation.CurrentMovieCommunication
 import com.android.movieapp.presentation.ErrorCommunication
 import com.android.movieapp.presentation.ProgressCommunication
+import com.android.movieapp.presentation.favorite.FavoriteCommunication
+import com.android.movieapp.presentation.favorite.FavoriteErrorCommunication
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -32,5 +34,10 @@ abstract class CommunicationModule {
     abstract fun bindCurrentMovieCommunication(
         currentMovieCommunication: CurrentMovieCommunication.Base
     ): CurrentMovieCommunication
+
+    @Binds
+    abstract fun bindFavoriteCommunication(
+        favoriteCommunication: FavoriteCommunication.Base
+    ): FavoriteCommunication
 
 }

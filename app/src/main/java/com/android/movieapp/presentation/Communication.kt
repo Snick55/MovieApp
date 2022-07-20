@@ -16,13 +16,11 @@ interface Communication {
 
 
 
-    @Singleton
     class  Base @Inject constructor(): Communication{
 
         private val liveData = MutableLiveData<List<MoviesUi>>()
 
         override fun show(moviesUi:List <MoviesUi>) {
-            Log.d("TAG"," TEST${moviesUi[1]}")
             liveData.value = moviesUi
         }
 

@@ -1,5 +1,6 @@
 package com.android.movieapp.di
 
+import com.android.movieapp.data.cache.CacheDataSource
 import com.android.movieapp.data.cloud.CloudDataSource
 import dagger.Binds
 import dagger.Module
@@ -14,5 +15,10 @@ abstract class SourceModule {
     abstract fun bindCloudDataSource(
         cloudDataSource: CloudDataSource.Base
     ):CloudDataSource
+
+    @Binds
+    abstract fun bindCacheDataSource(
+        cacheDataSource: CacheDataSource.Base
+    ): CacheDataSource
 
 }

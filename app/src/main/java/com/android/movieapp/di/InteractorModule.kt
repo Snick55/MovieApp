@@ -1,5 +1,6 @@
 package com.android.movieapp.di
 
+import com.android.movieapp.domain.FavoriteInteractor
 import com.android.movieapp.domain.Interactor
 import com.android.movieapp.domain.MoviesInteractor
 import dagger.Binds
@@ -15,5 +16,10 @@ abstract class InteractorModule {
     abstract fun bindInteractor(
         interactor: MoviesInteractor.Base
     ): MoviesInteractor
+
+    @Binds
+    abstract fun bindFavoriteInteracror(
+        interactor: FavoriteInteractor.Base
+    ): FavoriteInteractor
 
 }

@@ -4,9 +4,6 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.movieapp.R
-import com.android.movieapp.core.ResourceManager
-import com.android.movieapp.domain.Interactor
 import com.android.movieapp.domain.MoviesInteractor
 import com.android.movieapp.presentation.*
 import com.android.movieapp.presentation.CurrentMovieCommunication.Event
@@ -32,7 +29,6 @@ class MoviesViewModel @Inject constructor(
 
 
     init {
-
         progressCommunication.show(Visibility.Visible())
         dispatcher.launchBackground(viewModelScope) {
             interactor.movies(atFinish) {

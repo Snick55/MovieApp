@@ -11,7 +11,6 @@ import javax.inject.Singleton
 
 @Singleton
 class HandleDomainError @Inject constructor():HandleError {
-
     override fun handle(error: Exception) =
         if (error is UnknownHostException)
 

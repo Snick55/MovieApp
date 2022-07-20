@@ -4,9 +4,12 @@
     <string name="no_internet_connection">Проверьте подключение к интернету</string>
     <string name="service_unavailable_exception">Сервер недоступен</string>
     <string name="generic_exception">Что то пошло не так</string>
-    <string name="load_message">Loading…</string>
+    <string name="load_message">Загрузка…</string>
     <string name="year_of_film">Дата выхода: %1$d</string>
     <string name="ratting_of_film">Рейтинг: %1$s</string>
-    <string name="movies_title">Movies</string>
-    <string name="details_fragment">Details</string>
+    <string name="movies_title">Фильмы</string>
+    <string name="details_fragment">Описание</string>
+    <string name="all_movies">все фильмы</string>
+    <string name="favorite_movies">Избранное</string>
+    <string name="empty_favorites">добавляйте сюда свои фильмы</string>
 </resources>

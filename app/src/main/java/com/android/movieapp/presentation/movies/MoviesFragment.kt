@@ -1,6 +1,7 @@
 package com.android.movieapp.presentation.movies
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,8 +33,8 @@ class MoviesFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View {
         binding = MoviesFragmentBinding.inflate(inflater,container,false)
-        (requireActivity() as MainActivity).changeTitle(getString(R.string.movies_title))
 
+        Log.d("ERROR","fragment create")
 
         return binding.root
     }
@@ -41,6 +42,8 @@ class MoviesFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as MainActivity).changeTitle(getString(R.string.movies_title))
+
         val viewModel by viewModels<MoviesViewModel>()
 
        val adapter = MoviesAdapter(viewModel)
@@ -49,13 +52,13 @@ class MoviesFragment : Fragment(){
 
 
         viewModel.observeMovie(viewLifecycleOwner){
+            binding.errorMessage.visibility = View.INVISIBLE
             adapter.setList(it)
         }
         viewModel.observeProgress(viewLifecycleOwner){
-            it.apply (binding.progressLayout)
+            it.apply(binding.progressLayout)
         }
         viewModel.observeError(viewLifecycleOwner){
-            binding.errorContainer.visibility = View.VISIBLE
             binding.errorMessage.text = it
         }
 

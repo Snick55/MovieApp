@@ -1,6 +1,7 @@
 package com.android.movieapp.data.cloud
 
 
+import androidx.room.PrimaryKey
 import com.android.movieapp.core.Movie
 import com.android.movieapp.core.MovieMapper
 import com.android.movieapp.data.MoviesData
@@ -48,7 +49,7 @@ data class Film(
      val genres: ArrayList<String> = arrayListOf()
 ): Movie{
     override fun <T> map(mapper: MovieMapper<T>): T {
-        return mapper.map(localizedName,description?: "",imageUrl?: "",year,rating)
+        return mapper.map(id,localizedName,description?: "",imageUrl?: "",year,rating)
     }
 }
 

@@ -5,11 +5,16 @@ import android.widget.TextView
 import androidx.annotation.StringRes
 import com.android.movieapp.R
 import com.android.movieapp.core.ResourceManager
+import com.android.movieapp.data.cache.entity.FavoriteEntity
 import com.android.movieapp.data.cloud.Film
 import com.bumptech.glide.Glide
 import java.io.Serializable
 
 interface MoviesUi : Serializable {
+
+    fun getId(): Int = -1
+
+    fun toFavorite() = FavoriteEntity(-1,"",0,0.0,"","")
 
     fun show(textView: TextView) = Unit
 
@@ -23,6 +28,7 @@ interface MoviesUi : Serializable {
 
 
     data class Base(
+        private val id: Int,
         private val title: String,
         private val description: String,
         private val imageUrl: String,
@@ -30,6 +36,11 @@ interface MoviesUi : Serializable {
         private val rating: Double,
         private val resourceManager: ResourceManager
     ) : MoviesUi {
+
+     override   fun toFavorite() = FavoriteEntity(id,title,year, rating, imageUrl, description)
+
+      override  fun getId() = id
+
         override fun showDetails(
             titleView: TextView,
             descriptionView: TextView,
