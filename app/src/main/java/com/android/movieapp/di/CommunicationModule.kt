@@ -1,11 +1,7 @@
 package com.android.movieapp.di
 
-import com.android.movieapp.presentation.Communication
-import com.android.movieapp.presentation.CurrentMovieCommunication
-import com.android.movieapp.presentation.ErrorCommunication
-import com.android.movieapp.presentation.ProgressCommunication
+import com.android.movieapp.presentation.*
 import com.android.movieapp.presentation.favorite.FavoriteCommunication
-import com.android.movieapp.presentation.favorite.FavoriteErrorCommunication
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,6 +10,7 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class CommunicationModule {
+
 
     @Binds
     abstract fun bindErrorCommunication(

@@ -15,16 +15,14 @@ interface ErrorCommunication {
 
 
     class Base @Inject constructor() : ErrorCommunication{
-       private val liveData = MutableLiveData<String>()
+
+        private val liveData = MutableLiveData<String>()
 
         override fun show(errorMessage: String) {
-            Log.d("ERROR", "error is setting")
-            liveData.value = errorMessage
+            liveData.postValue(errorMessage)
         }
 
         override fun observe(lifecycleOwner: LifecycleOwner, observer: Observer<String>) {
-            Log.d("ERROR", "error  observed")
-
             liveData.observe(lifecycleOwner,observer)
         }
     }

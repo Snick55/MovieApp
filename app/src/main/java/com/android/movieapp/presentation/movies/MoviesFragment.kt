@@ -7,16 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.transition.TransitionInflater
 import com.android.movieapp.MainActivity
 import com.android.movieapp.R
 import com.android.movieapp.databinding.MoviesFragmentBinding
 import com.android.movieapp.presentation.details.DetailsFragment
+import com.android.movieapp.presentation.favorite.FavoriteAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MoviesFragment : Fragment(){
+class MoviesFragment : Fragment() {
 
     private lateinit var binding: MoviesFragmentBinding
 
@@ -32,9 +35,9 @@ class MoviesFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = MoviesFragmentBinding.inflate(inflater,container,false)
+        binding = MoviesFragmentBinding.inflate(inflater, container, false)
 
-        Log.d("ERROR","fragment create")
+        Log.d("ERROR", "fragment create")
 
         return binding.root
     }
@@ -46,38 +49,37 @@ class MoviesFragment : Fragment(){
 
         val viewModel by viewModels<MoviesViewModel>()
 
-       val adapter = MoviesAdapter(viewModel)
+        val adapter = MoviesAdapter(viewModel)
         binding.moviesRV.adapter = adapter
-        binding.moviesRV.layoutManager = GridLayoutManager(requireActivity(),3)
+        binding.moviesRV.layoutManager = GridLayoutManager(requireActivity(), 3)
 
 
-        viewModel.observeMovie(viewLifecycleOwner){
+        viewModel.observeMovie(viewLifecycleOwner) {
             binding.errorMessage.visibility = View.INVISIBLE
             adapter.setList(it)
         }
-        viewModel.observeProgress(viewLifecycleOwner){
+
+        viewModel.observeProgress(viewLifecycleOwner) {
             it.apply(binding.progressLayout)
         }
-        viewModel.observeError(viewLifecycleOwner){
+
+
+        viewModel.observeError(viewLifecycleOwner) {
             binding.errorMessage.text = it
         }
 
-        viewModel.observeCurrentMovie(viewLifecycleOwner){ event ->
+
+
+        viewModel.observeCurrentMovie(viewLifecycleOwner) { event ->
             event?.get()?.let {
                 // TODO: 19.06.2022 add navigation components
                 val fragment = DetailsFragment.newInstance(it)
                 parentFragmentManager.beginTransaction().addToBackStack(null)
-                    .replace(R.id.fragment_container,fragment)
+                    .replace(R.id.fragment_container, fragment)
                     .commit()
             }
-
         }
-
     }
-    
-    
-    
-
 
 
 }

@@ -25,11 +25,16 @@ class MainActivity : AppCompatActivity() {
         val botNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         botNav.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.movies -> supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container,  MoviesFragment()).commit()
-
-                R.id.favorites -> supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container,  FavoriteFragment()).commit()
+                R.id.movies -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, MoviesFragment()).commit()
+                    supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                }
+                R.id.favorites -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, FavoriteFragment()).commit()
+                    supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                }
                 else -> throw IllegalStateException()
             }
             return@setOnItemSelectedListener true

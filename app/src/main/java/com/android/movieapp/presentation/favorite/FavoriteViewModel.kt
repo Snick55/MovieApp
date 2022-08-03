@@ -4,7 +4,6 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.movieapp.data.cache.entity.FavoriteEntity
 import com.android.movieapp.domain.FavoriteInteractor
 import com.android.movieapp.presentation.ErrorCommunication
 import com.android.movieapp.presentation.MoviesUi
@@ -20,13 +19,16 @@ class FavoriteViewModel @Inject constructor(
 ): ViewModel() {
 
 
-    init {
-        viewModelScope.launch {
+
+
+    fun getMovies()= viewModelScope.launch {
             val movies = interactor.getFavoritesMovies()
 
             communication.show(movies)
         }
-    }
+
+
+
 
 
     fun observe(owner: LifecycleOwner,observer: Observer<List<MoviesUi>>){
@@ -36,4 +38,5 @@ class FavoriteViewModel @Inject constructor(
     fun observeError(owner: LifecycleOwner,observer: Observer<String>){
         errorCommunication.observe(owner,observer)
     }
+
 }

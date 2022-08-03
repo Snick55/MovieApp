@@ -20,7 +20,6 @@ interface CloudDataSource {
             try {
                 service.getMovies()
             } catch (e: Exception) {
-                Log.d("TAG","ERROR${e}")
                 throw handleError.handle(e)
             }
     }

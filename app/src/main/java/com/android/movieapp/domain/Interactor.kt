@@ -25,7 +25,7 @@ interface Interactor {
                 val result = block.invoke()
                 dispatchers.changeToUI { successful.invoke(result) }
             } catch (error: Exception) {
-               dispatchers.changeToUI { handleError.handle(error) }
+                handleError.handle(error)
             } finally {
                 dispatchers.changeToUI { atFinish.invoke() }
             }

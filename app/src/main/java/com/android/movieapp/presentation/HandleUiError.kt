@@ -7,14 +7,13 @@ import com.android.movieapp.data.HandleError
 import com.android.movieapp.domain.EmptyCacheException
 import com.android.movieapp.domain.NoInternetConnectionException
 import com.android.movieapp.domain.ServiceUnavailableException
-import com.android.movieapp.presentation.favorite.FavoriteErrorCommunication
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class HandleUiError @Inject constructor(
     private val resourceManager: ResourceManager,
-    private val communication: ErrorCommunication,
+    private val communication: ErrorCommunication
 ) : HandleError {
 
     override fun handle(error: Exception): Exception {
@@ -24,7 +23,6 @@ class HandleUiError @Inject constructor(
             is EmptyCacheException -> resourceManager.getMessage(R.string.empty_favorites)
             else -> resourceManager.getMessage(R.string.generic_exception)
         }
-        Log.d("ERROR", "ERROR IS $errorMessage")
         communication.show(errorMessage)
         return error
     }

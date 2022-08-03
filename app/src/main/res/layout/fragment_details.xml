@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:layoutDescription="@xml/fragment_details_scene">
 
 
     <LinearLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_unfavorite"/>
+            android:src="@drawable/ic_unfavorite" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -29,23 +33,23 @@
             android:orientation="vertical">
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/date_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="50dp"
                 android:textColor="@color/white"
+                android:textSize="18sp"
                 tools:text="Дата выхода:" />
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/ratting_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="50dp"
                 android:textColor="@color/white"
+                android:textSize="18sp"
                 tools:text="Рейтинг:" />
         </LinearLayout>
 
@@ -55,19 +59,26 @@
 
     <TextView
         android:id="@+id/title_textview"
-        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/content"
         tools:text="Name" />
 
-    <TextView
 
+    <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_margin="10dp"
         android:textColor="@color/white"
-        android:textSize="15sp"
-        tools:text="testtesttesttesttesttesttesttesttest" />
-</LinearLayout>
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/title_textview"
+        tools:text="uhsduhcuisdhvui" />
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
