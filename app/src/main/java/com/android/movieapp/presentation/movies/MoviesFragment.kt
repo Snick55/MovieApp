@@ -72,7 +72,6 @@ class MoviesFragment : Fragment() {
 
         viewModel.observeCurrentMovie(viewLifecycleOwner) { event ->
             event?.get()?.let {
-                // TODO: 19.06.2022 add navigation components
                 val fragment = DetailsFragment.newInstance(it)
                 parentFragmentManager.beginTransaction().addToBackStack(null)
                     .replace(R.id.fragment_container, fragment)
