@@ -5,7 +5,7 @@
     <string name="service_unavailable_exception">Сервер недоступен</string>
     <string name="generic_exception">Что то пошло не так</string>
     <string name="load_message">Загрузка…</string>
-    <string name="year_of_film">Дата выхода: %1$d</string>
+    <string name="year_of_film">Колличество Серий: %1$d</string>
     <string name="ratting_of_film">Рейтинг: %1$s</string>
     <string name="movies_title">Фильмы</string>
     <string name="details_fragment">Описание</string>

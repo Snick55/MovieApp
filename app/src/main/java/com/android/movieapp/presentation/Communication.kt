@@ -21,6 +21,7 @@ interface Communication {
         private val liveData = MutableLiveData<List<MoviesUi>>()
 
         override fun show(moviesUi:List <MoviesUi>) {
+            Log.d("TAG","VALUE IS ${moviesUi[0]}")
             liveData.value = moviesUi
         }
 

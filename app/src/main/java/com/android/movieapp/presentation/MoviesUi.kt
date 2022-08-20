@@ -1,5 +1,6 @@
 package com.android.movieapp.presentation
 
+import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.StringRes
@@ -50,7 +51,7 @@ interface MoviesUi : Serializable {
             @StringRes yearResId:Int
         ) {
             titleView.text = title
-            descriptionView.text = description
+            descriptionView.text = Html.fromHtml(description)
             yearView.text = resourceManager.getMessage(yearResId,year)
             ratingView.text = resourceManager.getMessage(ratingResId,rating.toString())
 

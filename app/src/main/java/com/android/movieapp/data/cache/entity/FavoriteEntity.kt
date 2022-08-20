@@ -5,9 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.android.movieapp.core.FavoriteMapper
 import com.android.movieapp.core.MovieMapper
-import com.android.movieapp.core.ResourceManager
 import com.android.movieapp.data.cloud.Film
-import com.android.movieapp.presentation.MoviesUi
 
 @Entity(tableName = "favorites")
 data class FavoriteEntity(
@@ -28,6 +26,6 @@ data class FavoriteEntity(
 
 
 fun Film.asFavoriteEntity(): FavoriteEntity = FavoriteEntity(
-    this.id, this.localizedName, this.year, this.rating, this.imageUrl, this.description
+    this.id, this.name, this.weight, this.rating.average, this.imageUrl.original, this.description
 )
 

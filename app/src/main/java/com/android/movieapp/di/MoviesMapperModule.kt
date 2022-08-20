@@ -2,7 +2,6 @@ package com.android.movieapp.di
 
 import com.android.movieapp.core.MovieMapper
 import com.android.movieapp.data.MoviesData
-import com.android.movieapp.data.cloud.MoviesCloud
 import com.android.movieapp.domain.MoviesDomain
 import com.android.movieapp.presentation.MoviesUi
 import dagger.Binds
@@ -20,10 +19,7 @@ abstract class MoviesMapperModule {
         moviesData: MoviesData.Mapper.Base
     ): MoviesData.Mapper<MoviesDomain>
 
-    @Binds
-    abstract fun bindMoviesCloudMapper(
-        moviesCloud: MoviesCloud.Mapper.Base
-    ): MoviesCloud.Mapper<MoviesData>
+
 
     @Binds
     abstract fun bindMovieMapper(

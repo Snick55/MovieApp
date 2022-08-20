@@ -52,7 +52,7 @@ class AppModule {
     @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://s3-eu-west-1.amazonaws.com/")
+            .baseUrl("https://api.tvmaze.com")
             .client(provideClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build()

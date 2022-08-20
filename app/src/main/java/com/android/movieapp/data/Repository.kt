@@ -3,7 +3,6 @@ package com.android.movieapp.data
 import com.android.movieapp.data.cache.CacheDataSource
 import com.android.movieapp.data.cache.entity.FavoriteEntity
 import com.android.movieapp.data.cloud.CloudDataSource
-import com.android.movieapp.data.cloud.MoviesCloud
 import com.android.movieapp.domain.EmptyCacheException
 import com.android.movieapp.domain.MoviesDomain
 import com.android.movieapp.presentation.MoviesUi
@@ -27,19 +26,16 @@ interface Repository {
     class Base @Inject constructor(
         private val cloudDataSource: CloudDataSource,
         private val mapper: MoviesData.Mapper<MoviesDomain>,
-        private val mapperData: MoviesCloud.Mapper<MoviesData>,
         private val cacheDataSource: CacheDataSource
 
     ) : Repository {
         override suspend fun getMovies(): MoviesDomain {
-            val moviesData = cloudDataSource.getMovies().map(mapperData)
+            val moviesData = cloudDataSource.getMovies()
             return moviesData.map(mapper)
         }
 
         override suspend fun getFavoritesMovies(): List<FavoriteEntity> {
-           return if (cacheDataSource.getFavoriteMovies().isEmpty())
-               throw EmptyCacheException()
-            else cacheDataSource.getFavoriteMovies()
+           return cacheDataSource.getFavoriteMovies().ifEmpty { throw EmptyCacheException() }
         }
 
 
