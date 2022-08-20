@@ -3,9 +3,7 @@ package com.android.movieapp.data.cloud
 
 import com.android.movieapp.core.Movie
 import com.android.movieapp.core.MovieMapper
-import com.android.movieapp.data.MoviesData
 import com.google.gson.annotations.SerializedName
-import javax.inject.Inject
 
 
 
